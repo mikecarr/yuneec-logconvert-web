@@ -1,0 +1,25 @@
+
+### Testing
+
+curl -X POST -F the_file=@index.py localhost:5000/upload
+
+
+### Virtualenv
+It creates an environment that has its own installation directories, that doesn’t share libraries with other virtualenv environments (and optionally doesn’t access the globally installed libraries either).
+
+https://virtualenv.pypa.io/en/latest/
+
+### Debugging
+drop a gpx file here http://nationalmap.gov.au/
+
+### Visualization Sites
+* http://www.doarama.com/
+* http://www.gpsvisualizer.com/
+* http://maplorer.com/view_gpx.html
+* http://veloroutes.org/upload/ (slow)
+
+### References
+* https://developers.google.com/kml/articles/csvtokml
+* http://www.doarama.com/api/0.2/docs
+* http://www.rigacci.org/wiki/doku.php/tecnica/gps_cartografia_gis/gpx
+* https://github.com/AaronColby/doarama_api_php_lib/blob/master/generic_doarama_lib.php
