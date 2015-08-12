@@ -7,18 +7,22 @@ from converttoqpx import createGPXTrack
 from flask import Flask, render_template, request, abort, make_response, Response
 from xml.dom import minidom
 from StringIO import StringIO
+from logging.config import fileConfig
 
 app = Flask(__name__)
 app.config.from_object('config')
 
 port = 5000
 
-log = logging.getLogger()
-log.setLevel(logging.DEBUG)
+# log = logging.getLogger()
+# log.setLevel(logging.DEBUG)
+fileConfig('logging_config.ini')
+logger = logging.getLogger()
 
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
+    logger.debug('often makes a very good meal of %s', 'visiting tourists')
     return render_template('index.html')
 
 
@@ -57,16 +61,17 @@ def import_objects():
 
 
 if __name__ == "__main__":
-          # get port
-    port = int(os.environ.get('PORT', 5000))
+    # get port
+    default_port = app.config['PORT']
+    port = int(os.environ.get('PORT', default_port))
 
     # setup logger to log to stdout
-    ch = logging.StreamHandler(sys.stdout)
-    ch.setLevel(logging.DEBUG)
-    formatter = logging.Formatter(
-        '%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-    ch.setFormatter(formatter)
-    log.addHandler(ch)
+    # ch = logging.StreamHandler(sys.stdout)
+    # ch.setLevel(logging.DEBUG)
+    # formatter = logging.Formatter(
+    #     '%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+    # ch.setFormatter(formatter)
+    # log.addHandler(ch)
 
     app.debug = True
 
