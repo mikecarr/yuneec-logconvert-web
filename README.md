@@ -1,24 +1,35 @@
+# Yuneec FlightLog to GPX Converter Webapp
 
-### Testing
+Python Flask Web Application used to convert Yuneec Flightlogs into GPX format which can then be used in various visualization sites
 
-curl -X POST -F the_file=@index.py localhost:5000/upload
+***Disclaimer***: *I have very little experience with Python, I thought I would use this to gain more knowledge and experience*
 
+
+## Setup
+
+### Python PIP
+```
+$ pip install requirements.txt
+$ python index.py
+```
+
+Open browser to http://localhost:5000
 
 ### Virtualenv
 It creates an environment that has its own installation directories, that doesn’t share libraries with other virtualenv environments (and optionally doesn’t access the globally installed libraries either).
 
 https://virtualenv.pypa.io/en/latest/
 
-### Debugging
+## Debugging
 drop a gpx file here http://nationalmap.gov.au/
 
-### Visualization Sites
+## Visualization Sites
 * http://www.doarama.com/
 * http://www.gpsvisualizer.com/
 * http://maplorer.com/view_gpx.html
 * http://veloroutes.org/upload/ (slow)
 
-### References
+## References
 * https://developers.google.com/kml/articles/csvtokml
 * http://www.doarama.com/api/0.2/docs
 * http://www.rigacci.org/wiki/doku.php/tecnica/gps_cartografia_gis/gpx
