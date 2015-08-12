@@ -22,7 +22,6 @@ logger = logging.getLogger()
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
-    logger.debug('often makes a very good meal of %s', 'visiting tourists')
     return render_template('index.html')
 
 
