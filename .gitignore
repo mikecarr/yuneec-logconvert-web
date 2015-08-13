@@ -4,3 +4,5 @@ venv
 *.pyc
 *.gpx
 *.log
+
+config.py
