@@ -20,6 +20,16 @@ It creates an environment that has its own installation directories, that doesnâ
 
 https://virtualenv.pypa.io/en/latest/
 
+## Doarama
+
+### Activity Type
+```
+  {
+    "id": 30,
+    "name": "Fly - UAV / Drone"
+  }
+```
+
 ## Debugging
 drop a gpx file here http://nationalmap.gov.au/
 
@@ -34,3 +44,4 @@ drop a gpx file here http://nationalmap.gov.au/
 * http://www.doarama.com/api/0.2/docs
 * http://www.rigacci.org/wiki/doku.php/tecnica/gps_cartografia_gis/gpx
 * https://github.com/AaronColby/doarama_api_php_lib/blob/master/generic_doarama_lib.php
+* http://flask.readthedocs.org/en/0.2/patterns/sqlite3/
