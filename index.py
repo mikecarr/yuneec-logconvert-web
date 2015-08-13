@@ -128,5 +128,7 @@ if __name__ == "__main__":
     # init_db()
     init_filesystem()
 
+    doarama_params.update({'api-key' : app.config['DOARAMA_API_KEY']})
+
     # run app
     app.run(host='0.0.0.0', port=port)

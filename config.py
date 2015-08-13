@@ -9,3 +9,5 @@ SECRET_KEY = 'development key'
 USERNAME = 'admin'
 PASSWORD = 'default'
 UPLOAD_FOLDER = 'uploads/'
+
+DOARAMA_API_KEY='your key here'
