@@ -4,7 +4,7 @@ static/uploads
 
 *.pyc
 *.gpx
-r.log
+*.log
 
 config.py
 stdout.log
