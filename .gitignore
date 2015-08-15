@@ -1,8 +1,10 @@
 src
 venv
+static/uploads
 
 *.pyc
 *.gpx
-*.log
+r.log
 
 config.py
+stdout.log

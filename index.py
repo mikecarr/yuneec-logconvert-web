@@ -111,7 +111,7 @@ def import_objects():
         print("Key Id: " + str(key_id))
 
         global entries
-        entries = [dict(key_id=key_id)]
+        entries = [dict(key_id=key_id,file_name=filename)]
 
         return redirect(url_for('show_visualisation'))
 

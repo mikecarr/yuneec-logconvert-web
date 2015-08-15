@@ -20,15 +20,23 @@
         {% for entry in entries %}
         <!-- <li><h2>{{ entry.key_id }}</h2></li> -->
         <iframe width="940px" height="420px" src="http://api.doarama.com/api/0.2/visualisation?k={{ entry.key_id }}&name=You&avatar=http%3A%2F%2Fplacehold.it%2F32x32" frameborder="0" allowfullscreen></iframe>
+        </p>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Download GPX file</h3>
+            </div>
+            <div class="panel-body">
+                <a href="{{ entry.file_name }}">Download GPX file </a>
+            </div>
+        </div>
         {% else %}
         <li><em>Unbelievable.  No entries here so far</em> </li>
         {% endfor %}
         <footer class="footer">
-    <div class="container">
-        <p class="text-muted">Mike Carr @2015</p>
-    </div>
-</footer>
-
+            <div class="container">
+                <p class="text-muted">Mike Carr @2015</p>
+            </div>
+        </footer>
     </div>
 </body>
 
