@@ -99,7 +99,8 @@ def import_objects():
         print("Activity Id: " + str(post_id))
 
         # remove temp file
-        os.remove(filename)
+        if app.config['UPLOAD_FOLDER'] == True:
+            os.remove(filename)
 
         # Each activity must be assigned a valid activity type. This is used to control various aspects of the
         # visualisation including playback rate and elevation correction so please set appropriately.
