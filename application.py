@@ -121,8 +121,8 @@ def import_objects():
 
 if __name__ == "__main__":
     # get port
-    default_port = app.config['PORT']
-    port = int(os.environ.get('PORT', default_port))
+    # default_port = app.config['PORT']
+    # port = int(os.environ.get('PORT', default_port))
 
     app.debug = True
 
@@ -132,4 +132,5 @@ if __name__ == "__main__":
     doarama_params.update({'api-key' : app.config['DOARAMA_API_KEY']})
 
     # run app
-    app.run(host='0.0.0.0', port=port)
+    # app.run(host='0.0.0.0', port=port)
+    app.run()

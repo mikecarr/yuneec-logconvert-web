@@ -13,4 +13,4 @@ PASSWORD = 'default'
 UPLOAD_FOLDER = 'static/uploads/'
 DEL_UPLOADS = False
 
-
+DOARAMA_API_KEY = ''
