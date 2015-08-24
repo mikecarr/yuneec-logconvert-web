@@ -54,6 +54,7 @@ def index():
 #     return response
 
 def init_filesystem():
+    logger.debug("init_filesystem")
     filename = application.config['UPLOAD_FOLDER']
     d = os.path.dirname(filename)
     if not os.path.exists(d):
@@ -61,6 +62,7 @@ def init_filesystem():
 
 @application.route('/api/cleanFiles')
 def cron_clean_files():
+    logger.debug("cron_clean_files")
     folder = application.config['UPLOAD_FOLDER']
     age = int(application.config['DAYS_TO_KEEP_LOGS'])
     age = int(age) * 86400    
@@ -101,18 +103,21 @@ def import_objects():
         csvreader = csv.DictReader(StringIO(content))
         order = ['', 'latitude', 'longitude', 'altitude']
 
+        logger.debug("create Gpx Track")
         gpxData = createGPXTrack(csvreader, output_file, order)
 
         user_id = str(1234)
         doarama_params.update({'user-id': user_id})
 
         # create temp file
+        logger.debug("creating temp file")
         filename = application.config['UPLOAD_FOLDER']  + "flightlog" + id_generator() + ".gpx"
         gpxFile = open(filename, 'w')
         gpxFile.write(gpxData)
         gpxFile.close()
 
         # post temp file
+        logger.debug("post file to doarama")
         gpxFile = open(filename, 'rb')
         post_id = post_file(user_id, gpxFile)
         print("Activity Id: " + str(post_id))
@@ -126,6 +131,7 @@ def import_objects():
         set_activity_info(30, post_id)
 
         # create a visual key which will be passed to iframe in visualisation.html
+        logger.debug("create_visualisation, post id: " + str(post_id))
         key_id = create_visualisation(post_id)
         print("Key Id: " + str(key_id))
 
