@@ -7,7 +7,7 @@
 """
 
 import logging
-import os
+import os, time
 import csv
 import random
 import string
@@ -58,6 +58,25 @@ def init_filesystem():
     d = os.path.dirname(filename)
     if not os.path.exists(d):
         os.makedirs(d)
+
+@application.route('/api/cleanFiles')
+def cron_clean_files():
+    folder = application.config['UPLOAD_FOLDER']
+    age = int(application.config['DAYS_TO_KEEP_LOGS'])
+    age = int(age) * 86400    
+
+
+    for file in os.listdir(folder):
+        now = time.time()
+        filepath = os.path.join(folder, file)
+        modified = os.stat(filepath).st_mtime
+        if modified < now - age:
+            if os.path.isfile(filepath):
+                os.remove(filepath)
+                logging.info("Deleted: " + file + "(" + str(modified) + ")")
+
+    return "OK"
+
 
 def allowed_file(filename):
     return '.' in filename and \
