@@ -110,6 +110,7 @@ def import_objects():
         doarama_params.update({'user-id': user_id})
 
         # create temp file
+        init_filesystem()
         logger.debug("creating temp file")
         filename = application.config['UPLOAD_FOLDER']  + "flightlog" + id_generator() + ".gpx"
         gpxFile = open(filename, 'w')
