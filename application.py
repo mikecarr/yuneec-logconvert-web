@@ -29,6 +29,7 @@ fileConfig('logging_config.ini')
 logger = logging.getLogger()
 
 entries = []
+doarama_params.update({'api-key' : os.environ['DOARAMA_API_KEY']})
 
 @application.route('/', methods=['GET', 'POST'])
 def index():
@@ -65,7 +66,7 @@ def cron_clean_files():
     logger.debug("cron_clean_files")
     folder = application.config['UPLOAD_FOLDER']
     age = int(application.config['DAYS_TO_KEEP_LOGS'])
-    age = int(age) * 86400    
+    age = int(age) * 86400
 
 
     for file in os.listdir(folder):
@@ -155,7 +156,7 @@ if __name__ == "__main__":
     # init_db()
     init_filesystem()
 
-    doarama_params.update({'api-key' : application.config['DOARAMA_API_KEY']})
+
 
     # run app
     # app.run(host='0.0.0.0', port=port)
