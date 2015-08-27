@@ -1,36 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
+    <head>
+        <title>Yuneec FlightLog to GPX Converter</title>
+        <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
+        <link href="static/style.css" rel="stylesheet">
+    </head>
+    <body>
+        <div class="container wrapper">
+            <div class="jumbotron">
+                <h1>Yuneec Flight Log Converter</h1>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    Flight logs are recorded on the ST10 SD Card, they can be located in the folder FlightLogs/. There
+                    are a number of csv files located here of which many are the same length (~227 bytes), these only contain the header.
+                    Look for the ones that have sizes greater than this.
 
-<head>
-    <title>Yuneec FlightLog to GPX Converter</title>
-    <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
-    <link href="static/style.css" rel="stylesheet">
-</head>
-
-<body>
-    <div class="container wrapper">
-        <div class="jumbotron">
-            <h1>Yuneec Flight Log Converter</h1>
-        </div>
-        <div>
-            <form action="/import" method="post" enctype="multipart/form-data">
-                <div class="form-group">
-                    <label for="exampleInputFile">Select the Flightlog to upload</label>
-                    <input type="file" name="file" id="exampleInputFile">
-                    <p class="help-block">Telemetry data is saved to a file on the ST10 TX if you have an SD Card installed.</p>
+                    </p>Other sites
+                    <li><a href="http://www.gpsvisualizer.com/" target="_blank">gpsvisualizer</a></li>
                 </div>
-                <div class="form-group">
-                    <input type="submit" value="Upload" class="btn btn-primary">
-                </div>
-            </form>
+            </div>
+            <div>
+                <form action="/import" method="post" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label for="exampleInputFile">Select the Flightlog to upload</label>
+                        <input type="file" name="file" id="exampleInputFile">
+                        <p class="help-block">Telemetry data is saved to a file on the ST10 TX if you have an SD Card installed.</p>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Upload" class="btn btn-primary">
+                    </div>
+                </form>
+            </div>
         </div>
-    </div>
-    <footer class="footer">
-      <div class="container">
-        <p class="text-muted">Mike Carr @2015</p>
-      </div>
-    </footer>
-</body>
-
+        <footer class="footer">
+            <div class="container">
+                <p class="text-muted">Mike Carr @2015</p>
+            </div>
+        </footer>
+    </body>
 </html>
