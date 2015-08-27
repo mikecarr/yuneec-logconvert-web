@@ -7,7 +7,7 @@
 """
 
 import logging
-import os
+import os, time
 import csv
 import random
 import string
@@ -22,15 +22,15 @@ from doarama import doarama_params, post_file, create_visualisation, set_activit
 from contextlib import closing
 from werkzeug import secure_filename
 
-app = Flask(__name__)
-app.config.from_object('config')
+application = Flask(__name__)
+application.config.from_object('config')
 
 fileConfig('logging_config.ini')
 logger = logging.getLogger()
 
 entries = []
 
-@app.route('/', methods=['GET', 'POST'])
+@application.route('/', methods=['GET', 'POST'])
 def index():
     return render_template('index.html')
 
@@ -54,23 +54,44 @@ def index():
 #     return response
 
 def init_filesystem():
-    filename = app.config['UPLOAD_FOLDER']
+    logger.debug("init_filesystem")
+    filename = application.config['UPLOAD_FOLDER']
     d = os.path.dirname(filename)
     if not os.path.exists(d):
         os.makedirs(d)
 
+@application.route('/api/cleanFiles')
+def cron_clean_files():
+    logger.debug("cron_clean_files")
+    folder = application.config['UPLOAD_FOLDER']
+    age = int(application.config['DAYS_TO_KEEP_LOGS'])
+    age = int(age) * 86400    
+
+
+    for file in os.listdir(folder):
+        now = time.time()
+        filepath = os.path.join(folder, file)
+        modified = os.stat(filepath).st_mtime
+        if modified < now - age:
+            if os.path.isfile(filepath):
+                os.remove(filepath)
+                logging.info("Deleted: " + file + "(" + str(modified) + ")")
+
+    return "OK"
+
+
 def allowed_file(filename):
     return '.' in filename and \
-        filename.rsplit('.', 1)[1] in app.config['ALLOWED_EXTENSIONS']
+        filename.rsplit('.', 1)[1] in application.config['ALLOWED_EXTENSIONS']
 
-@app.route('/visualisation')
+@application.route('/visualisation')
 def show_visualisation():
     return render_template('visualisation.html', entries=entries)
 
 def id_generator(size=6, chars=string.ascii_uppercase + string.digits):
     return ''.join(random.choice(chars) for _ in range(size))
 
-@app.route('/import', methods=['POST'])
+@application.route('/import', methods=['POST'])
 def import_objects():
     output_file = 'flightlog.gpx'
 
@@ -82,24 +103,28 @@ def import_objects():
         csvreader = csv.DictReader(StringIO(content))
         order = ['', 'latitude', 'longitude', 'altitude']
 
+        logger.debug("create Gpx Track")
         gpxData = createGPXTrack(csvreader, output_file, order)
 
         user_id = str(1234)
         doarama_params.update({'user-id': user_id})
 
         # create temp file
-        filename = app.config['UPLOAD_FOLDER']  + "flightlog" + id_generator() + ".gpx"
+        init_filesystem()
+        logger.debug("creating temp file")
+        filename = application.config['UPLOAD_FOLDER']  + "flightlog" + id_generator() + ".gpx"
         gpxFile = open(filename, 'w')
         gpxFile.write(gpxData)
         gpxFile.close()
 
         # post temp file
+        logger.debug("post file to doarama")
         gpxFile = open(filename, 'rb')
         post_id = post_file(user_id, gpxFile)
         print("Activity Id: " + str(post_id))
 
         # remove temp file
-        if app.config['UPLOAD_FOLDER'] == True:
+        if application.config['UPLOAD_FOLDER'] == True:
             os.remove(filename)
 
         # Each activity must be assigned a valid activity type. This is used to control various aspects of the
@@ -107,6 +132,7 @@ def import_objects():
         set_activity_info(30, post_id)
 
         # create a visual key which will be passed to iframe in visualisation.html
+        logger.debug("create_visualisation, post id: " + str(post_id))
         key_id = create_visualisation(post_id)
         print("Key Id: " + str(key_id))
 
@@ -121,15 +147,16 @@ def import_objects():
 
 if __name__ == "__main__":
     # get port
-    default_port = app.config['PORT']
-    port = int(os.environ.get('PORT', default_port))
+    # default_port = app.config['PORT']
+    # port = int(os.environ.get('PORT', default_port))
 
-    app.debug = True
+    application.debug = True
 
     # init_db()
     init_filesystem()
 
-    doarama_params.update({'api-key' : app.config['DOARAMA_API_KEY']})
+    doarama_params.update({'api-key' : application.config['DOARAMA_API_KEY']})
 
     # run app
-    app.run(host='0.0.0.0', port=port)
+    # app.run(host='0.0.0.0', port=port)
+    application.run()

@@ -1,0 +1,5 @@
+version: 1
+cron:
+  - name: "Remove app files"
+  - url: "/api/cleanFiles "
+  - schedule: "0 0 * * 0"

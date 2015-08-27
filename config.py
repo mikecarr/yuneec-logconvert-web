@@ -10,7 +10,8 @@ USERNAME = 'admin'
 PASSWORD = 'default'
 
 
-DOARAMA_API_KEY = 'add key here'
-
 UPLOAD_FOLDER = 'static/uploads/'
-DEL_UPLOADS = True
+DAYS_TO_KEEP_LOGS = 5
+DEL_UPLOADS = False
+
+DOARAMA_API_KEY = ''
