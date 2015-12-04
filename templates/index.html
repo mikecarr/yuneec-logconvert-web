@@ -1,69 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <title>Yuneec FlightLog to GPX Converter</title>
-        <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
-        <link href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
-        <link href="static/style.css" rel="stylesheet">
-    </head>
-    <body>
-        <div class="container wrapper">
-            <div class="jumbotron">
-                <h1>Yuneec Flight Log Converter</h1>
+
+<head>
+    <title>Yuneec FlightLog to GPX Converter</title>
+    <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
+    <link href="static/style.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container wrapper">
+        <div class="jumbotron">
+            <h1>Yuneec Flight Log Converter</h1>
+        </div>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="/" target="_blank">Home</a></li>
+                <li><a href="https://github.com/mikecarr/yuneec-logconvert-web" target="_blank">About</a></li>
+            </ul>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-body">
+                Flight logs are recorded on the ST10 SD Card, they can be located in the folder FlightLogs/. There are a number of csv files located here of which many are the same length (~227 bytes), these only contain the header. Look for the ones that have sizes greater than this.
+                </p>Other sites
+                <li><a href="http://www.gpsvisualizer.com/" target="_blank">gpsvisualizer</a></li>
             </div>
-
-            <div class="collapse navbar-collapse" id="navbarCollapse">
-                <ul class="nav navbar-nav">
-                    <li class="active"><a href="/" target="_blank">Home</a></li>
-
-                    <li><a href="https://github.com/mikecarr/yuneec-logconvert-web" target="_blank">About</a></li>
-                    
-                </ul>
-            </div>
-
-            <div class="panel panel-default">
-                <div class="panel-body">
-                    Flight logs are recorded on the ST10 SD Card, they can be located in the folder FlightLogs/. There
-                    are a number of csv files located here of which many are the same length (~227 bytes), these only contain the header.
-                    Look for the ones that have sizes greater than this.
-
-                    </p>Other sites
-                    <li><a href="http://www.gpsvisualizer.com/" target="_blank">gpsvisualizer</a></li>
+        </div>
+        <div>
+            <form action="/import" method="post" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="exampleInputFile">Select the Flightlog to upload</label>
+                    <input type="file" name="file" id="exampleInputFile">
+                    <p class="help-block">Telemetry data is saved to a file on the ST10 TX if you have an SD Card installed.</p>
                 </div>
-            </div>
-            <div>
-                <form action="/import" method="post" enctype="multipart/form-data">
-                    <div class="form-group">
-                        <label for="exampleInputFile">Select the Flightlog to upload</label>
-                        <input type="file" name="file" id="exampleInputFile">
-                        <p class="help-block">Telemetry data is saved to a file on the ST10 TX if you have an SD Card installed.</p>
-                    </div>
-                    <div class="form-group">
-                        <input type="submit" value="Upload" class="btn btn-primary">
-                    </div>
+                <div class="form-group">
+                    <input type="submit" value="Upload" class="btn btn-primary">
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="container panel panel-default">
+        <div class="panel-body">
+            Please help cover the cost of my Amazon bill.
+            <p>
+                <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+                    <input type="hidden" name="cmd" value="_s-xclick">
+                    <input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----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-----END PKCS7-----
+        ">
+                    <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+                    <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
                 </form>
-            </div>
         </div>
-        
-        <div class="container panel panel-default">
-  <div class="panel-body">
-  Please help cover the cost of my Amazon bill.<p>
-
-                        <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-<input type="hidden" name="cmd" value="_s-xclick">
-<input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----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-----END PKCS7-----
-">
-<input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
-<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
-</form>
-</div>
-</div>
-
+    </div>
+    </div>
+    <footer class="footer">
+        <div class="container">
+            <p class="text-muted">Mike Carr @2015</p>
         </div>
-        <footer class="footer">
-            <div class="container">
-                <p class="text-muted">Mike Carr @2015</p> 
-            </div>
-        </footer>
-    </body>
+    </footer>
+</body>
+
 </html>
