@@ -2,6 +2,6 @@
 
 . venv/bin/activate
 
-nohup python index.py &
+nohup python application.py &
 
 deactivate

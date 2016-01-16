@@ -29,6 +29,8 @@ https://virtualenv.pypa.io/en/latest/
     "name": "Fly - UAV / Drone"
   }
 ```
+### Donations
+[Please help me maintain the hosting costs, it isn't free.](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=mcarr67%40gmail%2ecom&lc=US&item_name=Help%20to%20pay%20for%20AWS%20bill&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted)
 
 ## Debugging
 drop a gpx file here http://nationalmap.gov.au/
