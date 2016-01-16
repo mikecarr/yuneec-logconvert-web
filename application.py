@@ -148,8 +148,8 @@ def import_objects():
 
 if __name__ == "__main__":
     # get port
-    # default_port = app.config['PORT']
-    # port = int(os.environ.get('PORT', default_port))
+    default_port = application.config['PORT']
+    port = int(os.environ.get('PORT', default_port))
 
     application.debug = True
 
@@ -159,5 +159,5 @@ if __name__ == "__main__":
 
 
     # run app
-    # app.run(host='0.0.0.0', port=port)
-    application.run()
+    application.run(host='0.0.0.0', port=port)
+    #application.run()

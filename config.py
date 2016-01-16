@@ -1,6 +1,6 @@
 ALLOWED_EXTENSIONS = set(['csv'])
 
-PORT = 5000
+PORT = 80
 
 # configuration - not used
 DATABASE = '/tmp/flaskr.db'
