@@ -1,0 +1,15 @@
+You are receiving this message because your email is associated with an api key on https://doarama.com. 
+
+
+When you were first provided with your API key, Doarama was a small project at NICTA/CSIRO, a government funded organization in Australia. In December 2017, we became an independent company and what was a team of one has grown to a team of 4. 
+
+
+In the coming weeks we will be moving all Doarama data to our new site https://ayvri.com and we have been onboarding our early commercial api users on ayvri.com, including MountainHub, DroneLogBook, WingsForLife and more.  We have some more big announcements on the way. 
+
+The ayvri API is a commercial use api. With the high cost of map and terrain data, we are currently unable to provide a free to use api. If you are interested in moving your api account to a paid ayvri, please contact us. 
+
+
+On August 31st we will be decommissioning the Doarama and you will no longer be able to create 3d visualisations using your api key. All links will be redirected to https://ayvri.com. 
+
+
+We thank you for your support and hope to see you on ayvri.com
