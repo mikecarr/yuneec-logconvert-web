@@ -1,3 +1,8 @@
+########################################################
+Notice: I will be taking this app down, please see [Doarama Email](Doarama.txt)
+########################################################
+
+
 # Yuneec FlightLog to GPX Converter Webapp
 
 Python Flask Web Application used to convert Yuneec Flightlogs into GPX format which can then be used in various visualization sites
